@@ -11,19 +11,19 @@ db = SQLAlchemy()
 
 class User(db.Model,SerializerMixin):
     __tablename__ = 'users'
-    serialize_rules = ('products')
+    serialize_rules = ('-reviews.user')
 
     id = db.Column(db.Integer,primary_key=True)
     name = db.Column(db.String)
     email = db.Column(db.String, unique= True)
     password = db.Column(db.String)
 
-    products = db.relationship('Product', backref ='user')
+    reviews = db.relationship('Review', backref ='user')
 
 
 class Product(db.Model,SerializerMixin):
     __tablename__ = 'products'
-    serialize_rules = ('users, carts')
+    serialize_rules = ('-reviews.product')
 
     id = db.Column(db.Integer, primary_key=True)
     product_name = db.Column(db.String)
@@ -31,18 +31,18 @@ class Product(db.Model,SerializerMixin):
     price = db.Column(db.Integer)
     image = db.Column(db.String)
 
-    carts = db.relationship('Cart', backref ='product')
+    reviews = db.relationship('Review',backref='product')
     
 
-class Cart(db.Model,SerializerMixin):
-    __tablename__ = 'carts'
-    serialize_rules = ('product')
+class Review(db.Model,SerializerMixin):
+    __tablename__ = 'reviews'
+    serialize_rules = ('-user.reviews','-product.reviews')
 
     id = db.Column(db.Integer, primary_key=True)
-    product_name = db.Column(db.String)
-    price = db.Column(db.Integer)
+    review = db.Column(db.String)
+    
 
-    product_id = db.Column(db.Integer,db.ForeignKey('products.id'))
+    product_id= db.Column(db.Integer, db.ForeignKey('products.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     
