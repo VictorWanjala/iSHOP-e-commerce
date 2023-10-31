@@ -30,6 +30,14 @@ class Product(db.Model,SerializerMixin):
     description = db.Column(db.String)
     price = db.Column(db.Integer)
     image = db.Column(db.String)
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "product_name": self.product_name,
+            "description": self.description,
+            "price": self.price, 
+            "image":self.image
+        }
 
     reviews = db.relationship('Review',backref='product')
     
