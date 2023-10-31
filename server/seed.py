@@ -2,6 +2,7 @@ from random import choice as rc
 from faker import Faker
 from app import app
 from models import db, User,Product,Review
+from passlib.hash import sha256_crypt
 
 fake = Faker()
 with app.app_context():
@@ -11,10 +12,14 @@ with app.app_context():
 
     users=[]
     for n in range(10):
-        user = User(name=fake.name())
+        email = fake.email()
+        password = fake.password(length=10, special_chars=True)
+        hashed_pass = sha256_crypt.hash(password)
+
+        user = User(name=fake.name(),email=email, password=hashed_pass)
         users.append(user)
     db.session.add_all(users)
-    # db.session.commit()
+  
 
     products=[]
     product_data = [
