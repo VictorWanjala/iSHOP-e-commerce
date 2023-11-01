@@ -1,0 +1,66 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .leftside {
+    display: flex;
+    align-items: center;
+  }
+  
+  .leftside img {
+    width: 200px;
+    height: 150px;
+  }
+  
+  .hiddenLinks {
+    display: none; 
+    margin-left: 20px;
+  }
+
+  .middle input[type="text"] {
+    width: 700px;
+    padding: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #d8d4d4;
+    color: black;
+    font-size: 16px;
+  }
+  
+  .rightSide a {
+    text-decoration: none;
+    color: black;
+    margin-left: 50px;
+    transition: color 0.3s;
+    font-size: 25px;
+    padding-right: 24px;
+  }
+
+
+  .rightSide > div {
+    margin-right: 20px;
+  }
+  
+  .rightSide a:hover {
+    color: #ff6347;
+    ; /* Change the color on hover */
+  }
+  
+  /* Media query to display hiddenLinks on smaller screens */
+  @media (max-width: 768px) {
+    .hiddenLinks {
+      display: flex;
+    }
+    .rightSide {
+      display: flex;
+      
+    }
+    
+  }
+  
