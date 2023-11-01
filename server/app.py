@@ -34,17 +34,7 @@ class UserRegister(Resource):
             db.session.add(new_user)
             db.session.commit()
             
-            # session["user_id"] = new_user.id
             return new_user.to_dict(),201
-
-      
-        
-        # hashed_pass = sha256_crypt.hash(password)
-
-        # new_user = User(name=name, email=email, password=hashed_pass)
-        # db.session.add(new_user)
-        # db.session.commit()
-
        
     
 api.add_resource(UserRegister, '/users')
