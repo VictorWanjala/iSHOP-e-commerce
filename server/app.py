@@ -1,4 +1,4 @@
-from flask import Flask,jsonify,make_response, request
+from flask import Flask,jsonify,make_response, request, session
 from flask_migrate import Migrate
 from models import db ,User, Review,Product
 from flask_restful import Resource, Api
@@ -24,21 +24,19 @@ api.add_resource(Products,"/products")
 
 class UserRegister(Resource):
     def post(self):
-        data = request.get_json()
-        name = data.get('name')
-        email = data.get('email')
-        password = data.get('password')
+        name = request.form.get('name')
+        email = request.form.get('email')
+        password = request.form.get('password')
 
-        if not name or not email or not password:
-            return jsonify({'message': 'Missing required fields'}), 400
-        
-        hashed_pass = sha256_crypt.hash(password)
-
-        new_user = User(name=name, email=email, password=hashed_pass)
-        db.session.add(new_user)
-        db.session.commit()
-
-        return jsonify({'message': 'User registered successfully'}), 201
+        if name and email and password:
+            hashed_pass = sha256_crypt.hash(password)
+            new_user = User(name=name, email=email, password=hashed_pass)
+            db.session.add(new_user)
+            db.session.commit()
+            
+            return new_user.to_dict(),201
+       
+    
 api.add_resource(UserRegister, '/users')
 
 
@@ -58,6 +56,59 @@ class UserLogin(Resource):
         else:
             return jsonify({"message": "Invalid email or password or user not found"}), 401
 
+class ReviewProduct(Resource):
+    def get(self, id):
+        review = Review.query.filter_by(id=id).first()
+        response_dict = review.to_dict()
+        response = make_response(jsonify(response_dict), 200)
+        response.headers["Content-Type"]= "application/json"
+        return response
+        
+        
+    def post(self):
+        new_review = Review(
+            review = request.form["review"],
+            product_id= request.form["product_id"],
+            user_id= request.form["user_id"]
+        )
+        db.session.add(new_review)
+        db.session.commit()
+
+        response_dict = new_review.to_dict()
+        response = make_response(
+            jsonify(response_dict), 201
+        )
+        return response
+    
+    def patch(self,id):
+        updated_review = Review.query.filter_by(id=id).first()
+        for attr in request.form:
+            setattr(updated_review, attr, request.form.get(attr))
+        db.session.add(updated_review)
+        db.session.commit()
+
+        review_dict = updated_review.to_dict()
+        response = make_response(
+            jsonify(review_dict), 200
+        )
+        return response
+
+    
+    def delete(self,id):
+        delete_review = Review.query.filter_by(id=id).first()
+        db.session.delete(delete_review)
+        db.session.commit()
+
+        response_dict = {"message":"Review deleted successfully"}
+        response = make_response(jsonify(response_dict), 200)
+        return response
+    
+
+        
+
+       
+
+api.add_resource(ReviewProduct,'/reviews/<int:id>')
 
 
 if __name__ =='__main__':
