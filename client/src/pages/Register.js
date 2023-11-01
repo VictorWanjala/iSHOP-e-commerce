@@ -35,14 +35,14 @@ function Register() {
         if (r.status === 201) {
           return r.json();
         } else {
-          throw new Error("Registration failed");
+          throw new Error("Registration failed: " + r.status);
         }
       })
       .then((data) => {
-        console.log("Registration successful", data);
+        alert("Registration successful", data);
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.error("Error:", error.message);
       });
     console.log("Registration data:", values);
   };
