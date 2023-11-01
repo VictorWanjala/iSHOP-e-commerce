@@ -18,6 +18,15 @@ class User(db.Model,SerializerMixin):
     email = db.Column(db.String, unique= True)
     password = db.Column(db.String)
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "email": self.email,
+            "password": self.password
+            
+        }
+
     reviews = db.relationship('Review', backref ='user')
 
 
@@ -48,10 +57,20 @@ class Review(db.Model,SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     review = db.Column(db.String)
+
     
 
     product_id= db.Column(db.Integer, db.ForeignKey('products.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def to_dict(self):
+        return{
+            "id":self.id,
+            "review":self.review,
+            "product_id":self.product_id,
+            " user_id":  self.user_id
+
+        }
 
     
 
