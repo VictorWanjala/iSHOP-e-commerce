@@ -1,0 +1,21 @@
+
+.socialMedia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 30px;
+  }
+  
+  .socialMedia svg {
+    font-size: 1.8rem;
+    margin: 0 20px;
+    color: #fff;
+    transition: color 0.3s;
+  }
+  
+  .socialMedia svg:hover {
+    color: #E44D26;
+  }
+  

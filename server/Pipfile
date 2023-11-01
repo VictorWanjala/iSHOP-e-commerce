@@ -11,6 +11,7 @@ flask-sqlalchemy = "*"
 faker = "*"
 flask-restful = "*"
 passlib = "*"
+flask-cors = "*"
 
 [dev-packages]
 

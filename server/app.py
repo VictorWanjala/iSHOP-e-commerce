@@ -1,5 +1,6 @@
 from flask import Flask,jsonify,make_response, request, session
 from flask_migrate import Migrate
+from flask_cors import CORS
 from models import db ,User, Review,Product
 from flask_restful import Resource, Api
 from passlib.hash import sha256_crypt
@@ -11,7 +12,9 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 api=Api(app)
 
+CORS(app)
 migrate = Migrate(app, db)
+
 db.init_app(app)
 
 class Products(Resource):

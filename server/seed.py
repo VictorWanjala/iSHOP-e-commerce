@@ -23,7 +23,7 @@ with app.app_context():
 
     products=[]
     product_data = [
-        ('Shoes','Black high-heeled shoes','https://www.pexels.com/@craytive/','1500'),
+        ('Shoes','Black high-heeled shoes','https://images.pexels.com/photos/6046212/pexels-photo-6046212.jpeg?auto=compress&cs=tinysrgb&w=1600', '5000'),
         ('Perfume','D&G','https://images.pexels.com/photos/965990/pexels-photo-965990.jpeg?auto=compress&cs=tinysrgb&w=300','4500'),
         ('Flower','Roses','https://images.pexels.com/photos/74512/pexels-photo-74512.jpeg?auto=compress&cs=tinysrgb&w=300','3500'),
         ('Lipstick','Vicrose pink','https://images.pexels.com/photos/2533266/pexels-photo-2533266.jpeg?auto=compress&cs=tinysrgb&w=300','10000'),
@@ -31,10 +31,20 @@ with app.app_context():
         ('Mascara','Venusneriko black','https://images.pexels.com/photos/6167864/pexels-photo-6167864.jpeg?auto=compress&cs=tinysrgb&w=300','1000'),
         ('Beauty cream','Masibolies white','https://images.pexels.com/photos/2587175/pexels-photo-2587175.jpeg?auto=compress&cs=tinysrgb&w=300','8500'),
         ('Nail polish','nailstar','https://images.pexels.com/photos/791157/pexels-photo-791157.jpeg?auto=compress&cs=tinysrgb&w=300','1500'),
+        ('Boots','my lady boot','https://images.pexels.com/photos/6046218/pexels-photo-6046218.jpeg?auto=compress&cs=tinysrgb&w=1600','7500'),
+        ('Ankara','Ankara fashionista','https://images.pexels.com/photos/985635/pexels-photo-985635.jpeg?auto=compress&cs=tinysrgb&w=1600','7500'),
         ('Lipbum','Mucsinrose brown','https://images.pexels.com/photos/6167864/pexels-photo-6167864.jpeg?auto=compress&cs=tinysrgb&w=300','7500'),
-        ('Lipbum','Mucsinrose brown','https://images.pexels.com/photos/6167864/pexels-photo-6167864.jpeg?auto=compress&cs=tinysrgb&w=300','7500'),
-        ('Lipbum','Mucsinrose brown','https://images.pexels.com/photos/6167864/pexels-photo-6167864.jpeg?auto=compress&cs=tinysrgb&w=300','7500'),
-        ('Lipbum','Mucsinrose brown','https://images.pexels.com/photos/6167864/pexels-photo-6167864.jpeg?auto=compress&cs=tinysrgb&w=300','7500')
+        ('Wedding','Her wedding day dress','https://images.pexels.com/photos/291759/pexels-photo-291759.jpeg?auto=compress&cs=tinysrgb&w=1600','7500'),
+        ('Wedding','His wedding day Suit','https://images.pexels.com/photos/1096849/pexels-photo-1096849.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1','7500'),
+        ('Wedding','Her wedding day watch','https://images.pexels.com/photos/12835312/pexels-photo-12835312.jpeg?auto=compress&cs=tinysrgb&w=1600','7500'),
+        ('Wedding','His wedding day watch','https://images.pexels.com/photos/12835315/pexels-photo-12835315.jpeg?auto=compress&cs=tinysrgb&w=1600','7500'),
+        ('Cooker','silver cooker','https://images.pexels.com/photos/15667606/pexels-photo-15667606/free-photo-of-interior-of-a-modern-kitchen.jpeg?auto=compress&cs=tinysrgb&w=1600','7500'),
+        ('Mirrors','Bathroom mirrors','https://images.pexels.com/photos/7533929/pexels-photo-7533929.jpeg?auto=compress&cs=tinysrgb&w=1600','7500'),
+        ('Wedding','Her wedding day dress','https://images.pexels.com/photos/291759/pexels-photo-291759.jpeg?auto=compress&cs=tinysrgb&w=1600','7500'),
+        ('Wedding','Her wedding day dress','https://images.pexels.com/photos/291759/pexels-photo-291759.jpeg?auto=compress&cs=tinysrgb&w=1600','7500'),
+        ('Wedding','Her wedding day dress','https://images.pexels.com/photos/291759/pexels-photo-291759.jpeg?auto=compress&cs=tinysrgb&w=1600','7500'),
+        ('Wedding','Her wedding day dress','https://images.pexels.com/photos/291759/pexels-photo-291759.jpeg?auto=compress&cs=tinysrgb&w=1600','7500'),
+        ('Wedding','Her wedding day dress','https://images.pexels.com/photos/291759/pexels-photo-291759.jpeg?auto=compress&cs=tinysrgb&w=1600','7500')
     ]
     for product_name ,description, image,price in product_data:
         product= Product(product_name=product_name,description=description,image=image, price=price)
