@@ -6,6 +6,9 @@ from models import db ,User, Review,Product
 from flask_restful import Resource, Api
 
 
+from passlib.hash import sha256_crypt
+
+
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"]='sqlite:///app.db'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
