@@ -4,7 +4,7 @@ import {FaShoppingCart} from 'react-icons/fa';
 import { Link } from 'react-router-dom'
 import '../styles/Navbar.css'
 
-function Navbar() {
+function Navbar({cart}) {
   return (
     <div className='navbar'>
         <div className='leftside'>
@@ -26,6 +26,9 @@ function Navbar() {
             <Link to="/Login">Login</Link>
             <Link to="/Cart">
                 <FaShoppingCart size={30}/>
+                {cart.length > 0 && (
+                <span className="cart-count">{cart.length}</span>
+                )}
             </Link>
             
         </div>

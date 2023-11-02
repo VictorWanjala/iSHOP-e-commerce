@@ -58,7 +58,6 @@ class Review(db.Model,SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     review = db.Column(db.String)
 
-    
 
     product_id= db.Column(db.Integer, db.ForeignKey('products.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
