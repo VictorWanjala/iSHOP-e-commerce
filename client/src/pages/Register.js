@@ -1,51 +1,52 @@
-import React from 'react'
-import {Formik, Field, Form, ErrorMessage} from 'formik'
-import * as Yup from 'yup'
+import React from "react";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 function Register() {
-    const initialValues = {
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-    };
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
 
-    const validationSchema = Yup.object().shape({
-        name: Yup.string().required('Name is required'),
-        email: Yup.string().email('Invalid email address').required('Email is required'),
-        password: Yup.string()
-          .required('Password is required')
-          .min(6, 'Password must be at least 6 characters'),
-        confirmPassword: Yup.string()
-          .oneOf([Yup.ref('password'), null], 'Passwords must match')
-          .required('Confirm Password is required'),
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password must be at least 6 characters"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Confirm Password is required"),
+  });
+
+  const onSubmit = (values) => {
+    fetch("/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    })
+      .then((r) => {
+        if (r.status === 201) {
+          return Response.json();
+        } else {
+          throw new Error("Registration failed");
+        }
+      })
+      .then((data) => {
+        console.log("Registration successful", data);
       });
-    
-      const onSubmit = (values) => {
-        fetch('/users',{
-            method: 'POST',
-            headers: {
-                'Content-Type':'application/json',
-            },
-            body:JSON.stringify(values),
-        })
-        .then((r)=>{
-            if (r.status===201){
-                return Response.json();
-            }else{
-                throw new Error('Registration failed');
-            }
-        })
-        .then((data)=>{
-            console.log('Registration successful', data)
-        })
-        console.log('Registration data:', values);
-      };
-
+    console.log("Registration data:", values);
+  };
 
   return (
     <div>
-        <h2>Register</h2>
+      <h2>Register</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -72,8 +73,16 @@ function Register() {
 
           <div>
             <label htmlFor="confirmPassword">Confirm Password</label>
-            <Field type="password" id="confirmPassword" name="confirmPassword" />
-            <ErrorMessage name="confirmPassword" component="div" className="error" />
+            <Field
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+            />
+            <ErrorMessage
+              name="confirmPassword"
+              component="div"
+              className="error"
+            />
           </div>
 
           <div>
@@ -81,9 +90,8 @@ function Register() {
           </div>
         </Form>
       </Formik>
-
     </div>
-  )
+  );
 }
 
-export default Register
+export default Register;

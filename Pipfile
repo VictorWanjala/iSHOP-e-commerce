@@ -5,15 +5,15 @@ name = "pypi"
 
 [packages]
 flask = "*"
-sqlalchemy-serializer = "*"
 flask-migrate = "*"
-flask-sqlalchemy = "*"
-faker = "*"
-flask-restful = "*"
-passlib = "*"
 flask-cors = "*"
+passlib = "*"
+flask-restful = "*"
+flask-sqlalchemy = "*"
+sqlalchemy-serializer = "*"
+faker = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.8"
+python_version = "3.10"
