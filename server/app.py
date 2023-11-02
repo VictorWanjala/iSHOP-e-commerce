@@ -62,14 +62,17 @@ class UserLogin(Resource):
         password = data.get("password")
 
         if not email or not password:
-            return jsonify({"message": "Missing email or password"}), 400
+            return {"message": "Missing email or password"}, 400
 
         user = User.query.filter_by(email=email).first()
 
         if user and sha256_crypt.verify(password, user.password):
-            return jsonify({"message": "Login successful"}), 200
+            return {"message": "Login successful"}, 200
         else:
-            return jsonify({"message": "Invalid email or password or user not found"}), 401
+            return {"message": "Invalid email or password or user not found"}, 401
+
+        
+api.add_resource(UserLogin, '/login')
 
 class ReviewProduct(Resource):
     def get(self, id):
@@ -126,5 +129,5 @@ class ReviewProduct(Resource):
 api.add_resource(ReviewProduct,'/reviews/<int:id>')
 
 
-if __name__ =='_main_':
+if __name__ =='__main__':
     app.run(port=5555, debug=True)
