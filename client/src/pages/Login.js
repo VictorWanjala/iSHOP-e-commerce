@@ -17,20 +17,28 @@ function Login() {
   });
 
   const onSubmit = (values) => {
-   
     fetch('/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json', 
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(values), 
+      body: JSON.stringify(values),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        navigate('/Cart')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
       })
-    
+      .then((data) => {
+        alert('Login successful');
+        navigate('/Cart');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
+  
 
   return (
     <div>
