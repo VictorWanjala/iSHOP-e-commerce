@@ -1,8 +1,10 @@
 from flask import Flask,jsonify,make_response, request, session
 from flask_migrate import Migrate
 from flask_cors import CORS
+from passlib.hash import sha256_crypt
 from models import db ,User, Review,Product
 from flask_restful import Resource, Api
+
 
 from passlib.hash import sha256_crypt
 
@@ -28,9 +30,11 @@ api.add_resource(Products,"/products")
 
 class UserRegister(Resource):
     def post(self):
-        name = request.form.get('name')
-        email = request.form.get('email')
-        password = request.form.get('password')
+        data = request.get_json()
+        name = data.get('name')
+        email = data.get('email')
+        password = data.get('password')
+       
 
         if name and email and password:
             hashed_pass = sha256_crypt.hash(password)
@@ -38,7 +42,14 @@ class UserRegister(Resource):
             db.session.add(new_user)
             db.session.commit()
             
-            return new_user.to_dict(),201
+            
+            response = {
+                "message": "User registration successful",
+                "user": new_user.to_dict()
+            }
+            return response, 201
+        else:
+            return {"message": "Invalid data"}, 400
        
     
 api.add_resource(UserRegister, '/users')
@@ -115,5 +126,5 @@ class ReviewProduct(Resource):
 api.add_resource(ReviewProduct,'/reviews/<int:id>')
 
 
-if __name__ =='__main__':
+if __name__ =='_main_':
     app.run(port=5555, debug=True)
