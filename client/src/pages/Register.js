@@ -1,8 +1,11 @@
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import "../styles/Register.css";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
   const initialValues = {
     name: "",
     email: "",
@@ -39,23 +42,27 @@ function Register() {
         }
       })
       .then((data) => {
-        alert("Registration successful", data);
+        // Display an alert with a success message
+        alert("Registration successful");
+        // Log the data to the console
+        console.log("Data:", data);
+        // Navigate to the login page
+        navigate("/login");
       })
       .catch((error) => {
         console.error("Error:", error.message);
       });
-    console.log("Registration data:", values);
   };
-
   return (
     <div>
       <h2>Register</h2>
+      <h2 className="textreg">Register</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        <Form>
+        <Form className="register-form">
           <div>
             <label htmlFor="name">Name</label>
             <Field type="text" id="name" name="name" />
