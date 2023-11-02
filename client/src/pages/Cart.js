@@ -1,10 +1,14 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import '../styles/Cart.css'
 import ReviewForm from './ReviewForm';
 
 function Cart({cart, removeFromCart}) {
     const total = cart.reduce((acc, item)=>acc + item.price * item.quantity, 0);
-
+    const navigate = useNavigate();
+    const handleCheckout = () => {
+      navigate('/payment');
+    };
     const productId =  1
 
   return (
@@ -39,7 +43,7 @@ function Cart({cart, removeFromCart}) {
     </table>
     <p className='total'>Total: ${total}</p>
 
-    <button className="checkout-button">Checkout</button><br />
+    <button className="checkout-button" onClick={handleCheckout}>Checkout</button><br />
     <div><ReviewForm productId={productId} /></div>
   </div>
 

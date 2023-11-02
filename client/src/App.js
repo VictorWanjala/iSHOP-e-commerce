@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import About from './pages/About';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
+import Payment from './pages/Payment';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/About" element={<About />} />
           <Route path="/Cart" element={<Cart cart={cart} removeFromCart={removeFromCart} />} />
+          <Route path="/Payment" element={<Payment />}/>
         </Routes>
 
         <Footer />
