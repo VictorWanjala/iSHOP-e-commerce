@@ -2,9 +2,9 @@ import React from 'react'
 import '../styles/Home.css'
 import { useEffect, useState } from 'react';
 
-function Home() {
+function Home({addToCart}) {
     const [products, setProducts] = useState([]);
-  
+
     useEffect(() => {
       fetch('/products')
         .then((response) => response.json())
@@ -13,6 +13,8 @@ function Home() {
           console.log(products)
         });
     }, []);
+
+  
   
     return (
       <div className='products'>
@@ -23,7 +25,12 @@ function Home() {
               <h2>{product.product_name}</h2>
               <p>{product.description}</p>
               <p className='price'>$ {product.price}</p>
-              <button className='buy-button'>Buy Now</button>
+              <button
+              className='buy-button'
+              onClick={() => addToCart(product)}
+            >
+              Add to cart
+            </button>
 
             </div>
           ))}

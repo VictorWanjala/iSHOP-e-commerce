@@ -1,4 +1,4 @@
-/* styles/ProductList.css */
+
 .products {
   display: flex;
   justify-content: center;
@@ -16,7 +16,7 @@
 }
 
 .product-card {
-  width: calc(25% - 80px); /* 25% width for 4 columns per row, minus margins */
+  width: calc(25% - 80px); 
   margin: 20px;
   padding: 20px;
   background-color: #fff;
@@ -67,6 +67,6 @@
 
 @media (max-width: 768px) {
   .product-card {
-    width: calc(50% - 40px); /* 50% width for 2 columns per row on smaller screens */
+    width: calc(50% - 40px); 
   }
 }
