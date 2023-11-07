@@ -1,9 +1,8 @@
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import '../styles/Register.css'
+import "../styles/Register.css";
 import { useNavigate } from "react-router-dom";
-
 
 function Register() {
   const navigate = useNavigate();
@@ -45,7 +44,7 @@ function Register() {
       .then((data) => {
         alert("Registration successful", data);
 
-        navigate('/login')
+        navigate("/login");
       })
       .catch((error) => {
         console.error("Error:", error.message);
@@ -55,7 +54,7 @@ function Register() {
 
   return (
     <div>
-        <h2 className='textreg'>Register</h2>
+      <h2 className="textreg">Register</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -82,8 +81,16 @@ function Register() {
 
           <div>
             <label htmlFor="confirmPassword">Confirm Password</label>
-            <Field type="password" id="confirmPassword" name="confirmPassword" />
-            <ErrorMessage name="confirmPassword" component="div" className="error" />
+            <Field
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+            />
+            <ErrorMessage
+              name="confirmPassword"
+              component="div"
+              className="error"
+            />
           </div>
 
           <div>
@@ -91,9 +98,8 @@ function Register() {
           </div>
         </Form>
       </Formik>
-
     </div>
-  )
+  );
 }
 
-export default Register
+export default Register;

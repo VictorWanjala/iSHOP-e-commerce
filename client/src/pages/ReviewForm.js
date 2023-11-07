@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import '../styles/Review.css'
+import React, { useState } from "react";
+import "../styles/Review.css";
 
 function ReviewForm({ productId }) {
-  const [review, setReview] = useState('');
+  const [review, setReview] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setReview('');
+    setReview("");
   };
 
   return (
