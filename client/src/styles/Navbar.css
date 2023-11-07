@@ -49,10 +49,9 @@
   
   .rightSide a:hover {
     color: #ff6347;
-    ; /* Change the color on hover */
+    
   }
   
-  /* Media query to display hiddenLinks on smaller screens */
   @media (max-width: 768px) {
     .hiddenLinks {
       display: flex;
